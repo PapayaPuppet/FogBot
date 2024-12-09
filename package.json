@@ -1,4 +1,9 @@
 {
+  "name": "FogBot",
+  "main": "tbd",
+  "scripts": {
+    "start": "node src/index.ts"
+  },
   "dependencies": {
     "@sapphire/framework": "^5.3.1",
     "discord.js": "^14.16.3"

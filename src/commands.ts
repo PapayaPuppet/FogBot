@@ -1,4 +1,4 @@
-import  { Command } from '@sapphire/framework'
+import  { ApplicationCommandRegistry, Command } from '@sapphire/framework'
 
 
 enum CurrencyType {
@@ -6,19 +6,18 @@ enum CurrencyType {
     Secondary = 'Secondary'
 }
 
-
-function monthlyClaim(registry: Command.Registry)
-{
+export class MonthlyClaimCommand extends Command {
+  public override registerApplicationCommands(registry: ApplicationCommandRegistry) {
     registry.registerChatInputCommand(builder => 
         builder
             .setName('claim')
             .setDescription('Claim your monthly XP.')
     )
+  }
 }
 
-
-function myBalanceCommand(registry: Command.Registry)
-{
+export class MyBalanceCommand extends Command {
+  public override registerApplicationCommands(registry: ApplicationCommandRegistry) {
     registry.registerChatInputCommand(builder => 
         builder
             .setName('balance')
@@ -41,10 +40,11 @@ function myBalanceCommand(registry: Command.Registry)
                     )
             )
     )
+  }
 }
 
-function adminCommands(registry: Command.Registry)
-{
+export class AdminCommands extends Command {
+  public override registerApplicationCommands(registry: ApplicationCommandRegistry) {
     registry.registerChatInputCommand(builder => 
         builder
             .setName('admin')
@@ -194,4 +194,5 @@ function adminCommands(registry: Command.Registry)
                     )
             )
     )
+  }
 }
