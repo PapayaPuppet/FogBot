@@ -2,3 +2,7 @@ node_modules
 schema.png
 schema.svg
 schema.d2
+commands.txt
+.env
+
+build

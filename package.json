@@ -1,14 +1,32 @@
 {
-  "name": "FogBot",
-  "main": "tbd",
+  "name": "fogbot",
+  "main": "src/index.ts",
+  "type": "module",
   "scripts": {
-    "start": "node src/index.ts"
+    "startDev": "npx tsx watch src/index.ts"
   },
   "dependencies": {
-    "@sapphire/framework": "^5.3.1",
-    "discord.js": "^14.16.3"
+    "@adonisjs/lucid": "^21.5.1",
+    "@types/knex": "^0.16.1",
+    "clark-orm": "^4.0.6",
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.7",
+    "luxon": "^3.5.0",
+    "pg": "^8.13.1",
+    "uuid": "^11.0.3"
   },
   "devDependencies": {
+    "@sapphire/framework": "^5.3.1",
+    "@types/luxon": "^3.4.2",
+    "@types/node": "^22.10.1",
+    "@types/pg": "^8.11.10",
+    "nodemon": "^3.1.7",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.2",
     "typescript": "^5.7.2"
+  },
+  "imports": {
+    "#dbModels": "./src/db/models/index.js",
+    "#root": "./"
   }
 }
