@@ -4,5 +4,7 @@ schema.svg
 schema.d2
 commands.txt
 .env
+.clj-kondo
+.lsp
 
 build

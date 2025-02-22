@@ -1,0 +1,878 @@
+{
+  "namespaces": [
+    "public"
+  ],
+  "name": "public",
+  "tables": [
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "discord_id": {
+          "name": "discord_id",
+          "type": "bigint",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "bigint"
+        },
+        "log_channel_id": {
+          "name": "log_channel_id",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 255,
+          "mappedType": "string"
+        }
+      },
+      "name": "guild",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "guild_pkey",
+          "columnNames": [
+            "id"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {},
+      "nativeEnums": {
+        "LedgerEntryType": {
+          "name": "LedgerEntryType",
+          "schema": "public",
+          "items": [
+            "Claim",
+            "Bonus",
+            "Expenditure",
+            "Deduction",
+            "Credit",
+            "Debit"
+          ]
+        }
+      }
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "guild_id": {
+          "name": "guild_id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 255,
+          "mappedType": "string"
+        },
+        "disabled_at": {
+          "name": "disabled_at",
+          "type": "timestamptz",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 6,
+          "mappedType": "datetime"
+        }
+      },
+      "name": "guild_currency",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "guild_currency_pkey",
+          "columnNames": [
+            "id"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "guild_currency_guild_id_foreign": {
+          "constraintName": "guild_currency_guild_id_foreign",
+          "columnNames": [
+            "guild_id"
+          ],
+          "localTableName": "public.guild_currency",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.guild",
+          "updateRule": "cascade"
+        }
+      },
+      "nativeEnums": {
+        "LedgerEntryType": {
+          "name": "LedgerEntryType",
+          "schema": "public",
+          "items": [
+            "Claim",
+            "Bonus",
+            "Expenditure",
+            "Deduction",
+            "Credit",
+            "Debit"
+          ]
+        }
+      }
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "discord_id": {
+          "name": "discord_id",
+          "type": "bigint",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "bigint"
+        },
+        "joinable": {
+          "name": "joinable",
+          "type": "boolean",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "false",
+          "mappedType": "boolean"
+        },
+        "guild_id": {
+          "name": "guild_id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        }
+      },
+      "name": "guild_role",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "guild_role_pkey",
+          "columnNames": [
+            "id"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "guild_role_guild_id_foreign": {
+          "constraintName": "guild_role_guild_id_foreign",
+          "columnNames": [
+            "guild_id"
+          ],
+          "localTableName": "public.guild_role",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.guild",
+          "updateRule": "cascade"
+        }
+      },
+      "nativeEnums": {
+        "LedgerEntryType": {
+          "name": "LedgerEntryType",
+          "schema": "public",
+          "items": [
+            "Claim",
+            "Bonus",
+            "Expenditure",
+            "Deduction",
+            "Credit",
+            "Debit"
+          ]
+        }
+      }
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "guild_currency_id": {
+          "name": "guild_currency_id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "guild_role_id": {
+          "name": "guild_role_id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "quantity": {
+          "name": "quantity",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        }
+      },
+      "name": "role_claim",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "role_claim_pkey",
+          "columnNames": [
+            "id"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "role_claim_guild_currency_id_foreign": {
+          "constraintName": "role_claim_guild_currency_id_foreign",
+          "columnNames": [
+            "guild_currency_id"
+          ],
+          "localTableName": "public.role_claim",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.guild_currency",
+          "updateRule": "cascade"
+        },
+        "role_claim_guild_role_id_foreign": {
+          "constraintName": "role_claim_guild_role_id_foreign",
+          "columnNames": [
+            "guild_role_id"
+          ],
+          "localTableName": "public.role_claim",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.guild_role",
+          "updateRule": "cascade"
+        }
+      },
+      "nativeEnums": {
+        "LedgerEntryType": {
+          "name": "LedgerEntryType",
+          "schema": "public",
+          "items": [
+            "Claim",
+            "Bonus",
+            "Expenditure",
+            "Deduction",
+            "Credit",
+            "Debit"
+          ]
+        }
+      }
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "discord_id": {
+          "name": "discord_id",
+          "type": "bigint",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "bigint"
+        }
+      },
+      "name": "user",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "user_pkey",
+          "columnNames": [
+            "id"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {},
+      "nativeEnums": {
+        "LedgerEntryType": {
+          "name": "LedgerEntryType",
+          "schema": "public",
+          "items": [
+            "Claim",
+            "Bonus",
+            "Expenditure",
+            "Deduction",
+            "Credit",
+            "Debit"
+          ]
+        }
+      }
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "guild_id": {
+          "name": "guild_id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        }
+      },
+      "name": "guild_user",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "guild_user_pkey",
+          "columnNames": [
+            "id"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "guild_user_guild_id_foreign": {
+          "constraintName": "guild_user_guild_id_foreign",
+          "columnNames": [
+            "guild_id"
+          ],
+          "localTableName": "public.guild_user",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.guild",
+          "updateRule": "cascade"
+        },
+        "guild_user_user_id_foreign": {
+          "constraintName": "guild_user_user_id_foreign",
+          "columnNames": [
+            "user_id"
+          ],
+          "localTableName": "public.guild_user",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.user",
+          "updateRule": "cascade"
+        }
+      },
+      "nativeEnums": {
+        "LedgerEntryType": {
+          "name": "LedgerEntryType",
+          "schema": "public",
+          "items": [
+            "Claim",
+            "Bonus",
+            "Expenditure",
+            "Deduction",
+            "Credit",
+            "Debit"
+          ]
+        }
+      }
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "guild_user_id": {
+          "name": "guild_user_id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "currency_id": {
+          "name": "currency_id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "for_role_id": {
+          "name": "for_role_id",
+          "type": "bigint",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "bigint"
+        },
+        "type": {
+          "name": "type",
+          "type": "LedgerEntryType",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "nativeEnumName": "LedgerEntryType",
+          "enumItems": [
+            "Claim",
+            "Bonus",
+            "Expenditure",
+            "Deduction",
+            "Credit",
+            "Debit"
+          ],
+          "mappedType": "enum"
+        },
+        "quantity": {
+          "name": "quantity",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "reason": {
+          "name": "reason",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 255,
+          "mappedType": "string"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamptz",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "mappedType": "datetime"
+        },
+        "created_by_id": {
+          "name": "created_by_id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        }
+      },
+      "name": "guild_user_ledger_entry",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "guild_user_ledger_entry_pkey",
+          "columnNames": [
+            "id"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "guild_user_ledger_entry_guild_user_id_foreign": {
+          "constraintName": "guild_user_ledger_entry_guild_user_id_foreign",
+          "columnNames": [
+            "guild_user_id"
+          ],
+          "localTableName": "public.guild_user_ledger_entry",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.guild_user",
+          "updateRule": "cascade"
+        },
+        "guild_user_ledger_entry_currency_id_foreign": {
+          "constraintName": "guild_user_ledger_entry_currency_id_foreign",
+          "columnNames": [
+            "currency_id"
+          ],
+          "localTableName": "public.guild_user_ledger_entry",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.guild_currency",
+          "updateRule": "cascade"
+        },
+        "guild_user_ledger_entry_created_by_id_foreign": {
+          "constraintName": "guild_user_ledger_entry_created_by_id_foreign",
+          "columnNames": [
+            "created_by_id"
+          ],
+          "localTableName": "public.guild_user_ledger_entry",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.guild_user",
+          "updateRule": "cascade"
+        }
+      },
+      "nativeEnums": {
+        "LedgerEntryType": {
+          "name": "LedgerEntryType",
+          "schema": "public",
+          "items": [
+            "Claim",
+            "Bonus",
+            "Expenditure",
+            "Deduction",
+            "Credit",
+            "Debit"
+          ]
+        }
+      }
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(100)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 100,
+          "mappedType": "string"
+        },
+        "owner_id": {
+          "name": "owner_id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        }
+      },
+      "name": "character",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "character_pkey",
+          "columnNames": [
+            "id"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "character_owner_id_foreign": {
+          "constraintName": "character_owner_id_foreign",
+          "columnNames": [
+            "owner_id"
+          ],
+          "localTableName": "public.character",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.guild_user",
+          "updateRule": "cascade"
+        }
+      },
+      "nativeEnums": {
+        "LedgerEntryType": {
+          "name": "LedgerEntryType",
+          "schema": "public",
+          "items": [
+            "Claim",
+            "Bonus",
+            "Expenditure",
+            "Deduction",
+            "Credit",
+            "Debit"
+          ]
+        }
+      }
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "character_id": {
+          "name": "character_id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "currency_id": {
+          "name": "currency_id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "type": {
+          "name": "type",
+          "type": "LedgerEntryType",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "nativeEnumName": "LedgerEntryType",
+          "enumItems": [
+            "Claim",
+            "Bonus",
+            "Expenditure",
+            "Deduction",
+            "Credit",
+            "Debit"
+          ],
+          "mappedType": "enum"
+        },
+        "quantity": {
+          "name": "quantity",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "reason": {
+          "name": "reason",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 255,
+          "mappedType": "string"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamptz",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "mappedType": "datetime"
+        },
+        "created_by_id": {
+          "name": "created_by_id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        }
+      },
+      "name": "character_ledger_entry",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "character_ledger_entry_pkey",
+          "columnNames": [
+            "id"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "character_ledger_entry_character_id_foreign": {
+          "constraintName": "character_ledger_entry_character_id_foreign",
+          "columnNames": [
+            "character_id"
+          ],
+          "localTableName": "public.character_ledger_entry",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.character",
+          "updateRule": "cascade"
+        },
+        "character_ledger_entry_currency_id_foreign": {
+          "constraintName": "character_ledger_entry_currency_id_foreign",
+          "columnNames": [
+            "currency_id"
+          ],
+          "localTableName": "public.character_ledger_entry",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.guild_currency",
+          "updateRule": "cascade"
+        },
+        "character_ledger_entry_created_by_id_foreign": {
+          "constraintName": "character_ledger_entry_created_by_id_foreign",
+          "columnNames": [
+            "created_by_id"
+          ],
+          "localTableName": "public.character_ledger_entry",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.guild_user",
+          "updateRule": "cascade"
+        }
+      },
+      "nativeEnums": {
+        "LedgerEntryType": {
+          "name": "LedgerEntryType",
+          "schema": "public",
+          "items": [
+            "Claim",
+            "Bonus",
+            "Expenditure",
+            "Deduction",
+            "Credit",
+            "Debit"
+          ]
+        }
+      }
+    }
+  ],
+  "nativeEnums": {
+    "LedgerEntryType": {
+      "name": "LedgerEntryType",
+      "schema": "public",
+      "items": [
+        "Claim",
+        "Bonus",
+        "Expenditure",
+        "Deduction",
+        "Credit",
+        "Debit"
+      ]
+    }
+  }
+}

@@ -3,20 +3,29 @@
   "main": "src/index.ts",
   "type": "module",
   "scripts": {
-    "startDev": "npx tsx watch src/index.ts"
+    "startDev": "npx tsx watch src/index.ts",
+    "mikro": "npx mikro-orm-esm "
   },
   "dependencies": {
     "@adonisjs/lucid": "^21.5.1",
-    "@types/knex": "^0.16.1",
+    "@mikro-orm/cli": "^6.4.3",
+    "@mikro-orm/migrations": "^6.4.3",
+    "@mikro-orm/postgresql": "^6.4.3",
+    "@mikro-orm/reflection": "^6.4.3",
+    "@sapphire/snowflake": "^3.5.5",
+    "@types/uuid": "^10.0.0",
     "clark-orm": "^4.0.6",
+    "core-js": "^3.40.0",
     "discord.js": "^14.16.3",
     "dotenv": "^16.4.7",
     "luxon": "^3.5.0",
     "pg": "^8.13.1",
+    "reflect-metadata": "^0.2.2",
     "uuid": "^11.0.3"
   },
   "devDependencies": {
     "@sapphire/framework": "^5.3.1",
+    "@types/knex": "^0.16.1",
     "@types/luxon": "^3.4.2",
     "@types/node": "^22.10.1",
     "@types/pg": "^8.11.10",
@@ -26,7 +35,15 @@
     "typescript": "^5.7.2"
   },
   "imports": {
-    "#dbModels": "./src/db/models/index.js",
-    "#root": "./"
+    "#schema/*": "./src/db/schema/*",
+    "#schema": "./src/db/schema/index.js",
+    "#domain/*": "./src/domain/*",
+    "#root/*": "./src/*"
+  },
+  "mikro-orm": {
+    "useTsNode": true,
+    "configPaths": [
+      "./src/mikro-orm.config.ts"
+    ]
   }
 }
